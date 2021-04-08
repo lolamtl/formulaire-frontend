@@ -10,19 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
         subject: document.querySelector("#subject").value,
         message: document.querySelector("#message").value,
       };
-      // console.log(data.message.value);
-      const response = await axios.post(
-        // "https://formulairebackend.herokuapp.com/",
-        "http://localhost:3020/",
-        data
-      );
-      if (response.status === 200) {
-        alert(
-          "Votre message a bien été envoyé nous traiterons votre demande dans les plus brefs délais."
+
+      try {
+        const response = await axios.post(
+          "https://formulairebackend.herokuapp.com/",
+          data
         );
-      } else if (!response) {
-        alert("Réessayer en remplissant tous les champs obligatoire");
-      } else {
+        if (response.status === 200) {
+          alert(
+            "Votre message a bien été envoyé nous traiterons votre demande dans les plus brefs délais."
+          );
+        } else {
+          alert("Réessayer en remplissant tous les champs obligatoire");
+        }
+      } catch (error) {
         alert("Réessayer en remplissant tous les champs obligatoire");
       }
     });
